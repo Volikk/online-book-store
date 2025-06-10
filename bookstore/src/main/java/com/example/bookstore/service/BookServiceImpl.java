@@ -6,21 +6,29 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
-    public BookServiceImpl(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
-
     @Override
     public Book save(Book book) {
-        return bookRepository.save(book);
+        try {
+            entityManager.persist(book);
+            return book;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public List<Book> findAll() {
-        return bookRepository.findAll();
+        try {
+            return entityManager.createQuery("from Book", Book.class).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return List.of();
+        }
     }
 }

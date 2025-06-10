@@ -1,10 +1,14 @@
 package com.example.bookstore.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Entity
+@Table(name = "books")
+@Getter
+@Setter
 public class Book {
 
     @Id
@@ -24,7 +28,7 @@ public class Book {
     private BigDecimal price;
 
     private String description;
-    private String coverImage;
 
-    // Getters, Setters, equals, hashCode, toString
+    private String coverImage;
 }
+

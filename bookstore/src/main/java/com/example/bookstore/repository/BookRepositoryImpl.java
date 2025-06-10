@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BookRepositoryImpl implements BookRepository {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Override
     public Book save(Book book) {
